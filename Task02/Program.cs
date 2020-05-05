@@ -64,27 +64,24 @@ namespace Task02
                     Console.WriteLine(arr.TakeWhile(n => n != 0).Select(n => 
                             n.ToString()).Aggregate((n, m) => n + " " + m));
                 }
-                catch (ArgumentException ex)
+                catch (ArgumentException )
                 {
-                    Console.WriteLine("There should be numbers only");
+                    Console.WriteLine("ArgumentException");
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine("Exception");
                 }
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException )
             {
-                Console.WriteLine("Invalid operation! Something went wrong..");
+                Console.WriteLine("InvalidOperationException");
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("Exception");
             }
-            
-            
-            
-          
+
         }
         
     }

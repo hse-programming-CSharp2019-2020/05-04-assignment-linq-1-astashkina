@@ -42,32 +42,54 @@ namespace Task01
 
         public static void RunTesk01()
         {
-            int[] arr;
+            int[] arr = null;
             try
             {
                 // Попробуйте осуществить считывание целочисленного массива, записав это ОДНИМ ВЫРАЖЕНИЕМ.
                 arr = Array.ConvertAll(Console.ReadLine().Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries),
                     n => int.Parse(n));
-                
-                IEnumerable<int> arrQuery = from int i in arr where i < 0 || i % 2 == 0 select i;
+            }
+            catch (ArgumentException )
+            {
+                Console.WriteLine("ArgumentException");
+            }
+            catch (OverflowException )
+            {
+                Console.WriteLine("OverflowException");
+            }
+            catch (FormatException )
+            {
+                Console.WriteLine("FormatException");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Exception");
+            }
 
-                // использовать синтаксис методов!
-                IEnumerable<int> arrMethod = arr.Where(i => i < 0 || i % 2 == 0);
+            IEnumerable<int> arrQuery = from int i in arr where i < 0 || i % 2 == 0 select i;
 
+            // использовать синтаксис методов!
+            IEnumerable<int> arrMethod = arr.Where(i => i < 0 || i % 2 == 0);
+
+            try
+            {
                 PrintEnumerableCollection<int>(arrQuery, ":");
                 Console.WriteLine();
                 PrintEnumerableCollection<int>(arrMethod, "*");
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException )
             {
-                Console.WriteLine("Invalid operation! Something went wrong..");
+                Console.WriteLine("InvalidOperationException");
             }
-            catch (Exception ex)
+            catch (ArgumentNullException )
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("ArgumentNullException");
             }
-            
-            
+            catch (Exception )
+            {
+                Console.WriteLine("Exception");
+            }
+
             // использовать синтаксис запросов!
             
         }
