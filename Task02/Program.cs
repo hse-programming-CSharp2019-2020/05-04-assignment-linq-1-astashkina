@@ -41,41 +41,59 @@ namespace Task02
 
         public static void RunTesk02()
         {
-            int[] arr;
+            int[] arr = new int[0];
             try
             {
                 arr = Array.ConvertAll(Console.ReadLine().Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries),
                     n => int.Parse(n));
+            }
+            catch (ArgumentException)
+            {
+                Console.WriteLine("ArgumentException");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("OverflowException");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("FormatException");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Exception");
+            }
 
-                var filteredCollection = arr.TakeWhile(n => n != 0);
+            var filteredCollection = arr.TakeWhile(n => n != 0);
                 filteredCollection = filteredCollection.Select(n => n * n);
-                var filteredCollection1 = arr.TakeWhile(n => n != 0);
-                try
+            var filteredCollection1 = arr.TakeWhile(n => n != 0);
+            try 
+            {
+                checked // проверка на переполнение 
                 {
                     // использовать статическую форму вызова метода подсчета среднего
                     double averageUsingStaticForm = filteredCollection.Average();
-                    Console.WriteLine(averageUsingStaticForm);
+                    Console.WriteLine($"{averageUsingStaticForm:F3}");
                     // использовать объектную форму вызова метода подсчета среднего
                     double averageUsingInstanceForm = Enumerable.Average(filteredCollection);
-                    Console.WriteLine(averageUsingInstanceForm);
-
-                    // вывести элементы коллекции в одну строку
-                    //filteredCollection1.ToList().ForEach(n => Console.Write(n + ' '));
-                    Console.WriteLine(arr.TakeWhile(n => n != 0).Select(n => 
-                            n.ToString()).Aggregate((n, m) => n + " " + m));
+                    Console.WriteLine($"{averageUsingInstanceForm:F3}");
                 }
-                catch (ArgumentException )
-                {
-                    Console.WriteLine("ArgumentException");
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("Exception");
-                }
+                // вывести элементы коллекции в одну строку
+                //filteredCollection1.ToList().ForEach(n => Console.Write(n + ' '));
+                Console.WriteLine(arr.TakeWhile(n => n != 0).Select(n => 
+                        n.ToString()).Aggregate((n, m) => n + " " + m));
+            }
+            catch (ArgumentNullException )
+            {
+                Console.WriteLine("ArgumentNullException");
             }
             catch (InvalidOperationException )
             {
                 Console.WriteLine("InvalidOperationException");
+            }
+            catch (OverflowException )
+            {
+                Console.WriteLine("OverflowException");
             }
             catch (Exception )
             {
