@@ -64,13 +64,13 @@ namespace Task02
                 Console.WriteLine("Exception");
             }
 
-            var filteredCollection = arr.TakeWhile(n => n != 0);
-                filteredCollection = filteredCollection.Select(n => n * n);
-            var filteredCollection1 = arr.TakeWhile(n => n != 0);
+            
             try 
             {
                 checked // проверка на переполнение 
                 {
+                    var filteredCollection = arr.TakeWhile(n => n != 0);
+                    filteredCollection = filteredCollection.Select(n => n * n);
                     // использовать статическую форму вызова метода подсчета среднего
                     double averageUsingStaticForm = filteredCollection.Average();
                     Console.WriteLine($"{averageUsingStaticForm:F3}".Replace(".", ","));
