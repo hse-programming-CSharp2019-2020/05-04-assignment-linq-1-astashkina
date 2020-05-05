@@ -54,20 +54,9 @@ namespace Task01
                 // использовать синтаксис методов!
                 IEnumerable<int> arrMethod = arr.Where(i => i < 0 || i % 2 == 0);
 
-                try
-                {
-                    PrintEnumerableCollection<int>(arrQuery, ":");
-                    Console.WriteLine();
-                    PrintEnumerableCollection<int>(arrMethod, "*");
-                }
-                catch (ArgumentException ex)
-                {
-                    Console.WriteLine("There should be numbers only");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+                PrintEnumerableCollection<int>(arrQuery, ":");
+                Console.WriteLine();
+                PrintEnumerableCollection<int>(arrMethod, "*");
             }
             catch (InvalidOperationException ex)
             {
