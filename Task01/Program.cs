@@ -37,12 +37,7 @@ namespace Task01
     {
         static void Main(string[] args)
         {
-            do
-            {
-                RunTesk01();
-                Console.WriteLine();
-                Console.WriteLine("If you want to finish compiling - press Escape. Otherwise, press any other key!");
-            } while (Console.ReadKey().Key != ConsoleKey.Escape); // реализация бесконечного запуска программы
+            RunTesk01();
         }
 
         public static void RunTesk01()
