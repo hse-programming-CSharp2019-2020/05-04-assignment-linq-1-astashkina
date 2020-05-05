@@ -42,7 +42,7 @@ namespace Task01
 
         public static void RunTesk01()
         {
-            int[] arr = null;
+            int[] arr = new int[0];
             try
             {
                 // Попробуйте осуществить считывание целочисленного массива, записав это ОДНИМ ВЫРАЖЕНИЕМ.
