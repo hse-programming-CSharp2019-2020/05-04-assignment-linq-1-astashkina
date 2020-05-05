@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 /*
  * На вход подается строка, состоящая из целых чисел типа int, разделенных одним или несколькими пробелами.
@@ -39,30 +40,68 @@ namespace Task04
 
         public static void RunTesk04()
         {
-            int[] arr;
+            int[] arr = new int[0];
             try
             {
-                // Попробуйте осуществить считывание целочисленного массива, записав это ОДНИМ ВЫРАЖЕНИЕМ.
-                arr = 
+                arr = Array.ConvertAll(Console.ReadLine().Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries),
+                    n => int.Parse(n));
+            }
+            catch (ArgumentException)
+            {
+                Console.WriteLine("ArgumentException");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("OverflowException");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("FormatException");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Exception");
             }
            
-                // использовать синтаксис методов! SQL-подобные запросы не писать!
-               
-                int arrAggregate = arr.
+            // использовать синтаксис методов! SQL-подобные запросы не писать!
 
-                int arrMyAggregate = MyClass.MyAggregate(arr);
+            try
+            {
+                checked // проверка на переполнение 
+                {
+                    int arrAggregate = arr.Select((n, i) =>
+                        n * (int) Math.Pow(-1, i)).Aggregate((a, b) => a + b) + 5;
+                    int arrMyAggregate = MyClass.MyAggregate(arr);
 
-                Console.WriteLine(arrAggregate);
-                Console.WriteLine(arrMyAggregate);
-           
+                    Console.WriteLine(arrAggregate);
+                    Console.WriteLine(arrMyAggregate);
+                }
+            }
+            catch (ArgumentNullException )
+            {
+                Console.WriteLine("ArgumentNullException");
+            }
+            catch (InvalidOperationException )
+            {
+                Console.WriteLine("InvalidOperationException");
+            }
+            catch (OverflowException )
+            {
+                Console.WriteLine("OverflowException");
+            }
+            catch (Exception )
+            {
+                Console.WriteLine("Exception");
+            }
         }
     }
 
     static class MyClass
     {
-        public static int MyAggregate()
+        public static int MyAggregate(int[] array)
         {
-            
+            return array.Select((n, i) =>
+                       n * (int) Math.Pow(-1, i)).Aggregate((a, b) => a + b) + 5;
         }
     }
 }
